@@ -9,11 +9,27 @@ Project: {name:1, \_id: 0}
 
 ### 2. All the companies that have more than 5000 employees. Limit the search to 20 companies and sort them by **number of employees**.
 
+Find:number_of_employees : {$gte : 5000}}
+Project: {\_id : 0}
+Sort: {number_of_employees : 1}
+Limit: 20
+
 ### 3. All the companies founded between 2000 and 2005, both years included. Retrieve only the `name` and `founded_year` fileds.
+
+Find:{founded_year : {$gte:2000 , $lte:2005}}
+Project: {\_id : 0, name : 1, founded_year : 1}
+Sort: {founded_year:-1}
 
 ### 4. All the companies that had an IPO of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields.
 
+Find:{founded_year : {"ipo.valuation_amount":{$gte:100000000}, founded_year:{$lte:2010}}
+Project: {ipo:1 , \_id:0 , name:1}
+
 ### 5. All the companies that have less than 1000 employees and have been founded before 2005. Order them by the number of employees and limit the search to 10 companies.
+
+Find:number_of_employees : {number_of_employees:{$lte:1000}, founded_year:{$lte:2005}}
+Sort: {number_of_employees:1}
+Limit: 10
 
 ### 6. All the companies that don't include the `partners` field.
 
